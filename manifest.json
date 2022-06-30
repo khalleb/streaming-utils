@@ -1,0 +1,12 @@
+{
+  "name": "Streaming Utils",
+  "description": "Utils streaming for Netflix, HBO Max",
+  "version": "1.0",
+  "manifest_version": 3,
+  "content_scripts": [
+		{
+			"matches": ["https://*.netflix.com/*", "https://*.hbomax.com/*"],
+			"js": ["./src/hbo/hbo-max/script.js"]
+		}
+	]
+}
