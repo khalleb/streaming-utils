@@ -4,9 +4,13 @@
   "version": "1.0",
   "manifest_version": 3,
   "content_scripts": [
-		{
-			"matches": ["https://*.netflix.com/*", "https://*.hbomax.com/*"],
-			"js": ["./src/hbo/hbo-max/script.js"]
+    {
+			"matches": ["https://*.hbomax.com/*"],
+      "js": ["src/hbo/hbomax/script.js"]
+		},
+    	{
+			"matches": ["https://*.starplus.com/*"],
+      "js": ["src/disney/starplus/script.js"]
 		}
 	]
 }
