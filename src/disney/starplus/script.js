@@ -8,16 +8,11 @@ var UtilStarPlus = (function () {
   }
 
   var intro_observer = new MutationObserver(skipIntro)
-  var next_episode_observer = new MutationObserver(nextEpisode)
 
   function run() {
     try {
       const elementSelectorIntro = document.querySelector('.skip__button') || document;
-      //const elementButtonNextEpisode = document.querySelectorAll('[data-testid="up-next-play-button"]');
-      //const elementSelectorNextEpisode = (elementButtonNextEpisode && elementButtonNextEpisode.length > 0) ? elementButtonNextEpisode[0] : document;
-
-      intro_observer.observe(elementSelectorIntro, target)
-      //next_episode_observer.observe(elementSelectorNextEpisode, target)
+      intro_observer.observe(elementSelectorIntro, target);
     } catch (e) {
       console.log(e)
     }
@@ -27,15 +22,12 @@ var UtilStarPlus = (function () {
     const skip = document.querySelector(".skip__button");
     if (skip) {
       skip.click();
+      const fullscreen = document.querySelector('.fullscreen-icon');
+      if (fullscreen) {
+        fullscreen.click();
+      }
     }
   }
-  function nextEpisode(mutations, observer) {
-    const nextEpisode = document.querySelectorAll('[data-testid="up-next-play-button"]');
-    if (nextEpisode && nextEpisode.length > 0) {
-      nextEpisode[0].click();
-    }
-  }
-
   return {
     run: run
   };
