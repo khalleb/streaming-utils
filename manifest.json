@@ -5,12 +5,28 @@
   "manifest_version": 3,
   "content_scripts": [
     {
-			"matches": ["https://*.hbomax.com/*"],
-      "js": ["src/hbo/hbomax/script.js"]
-		},
-    	{
-			"matches": ["https://*.starplus.com/*"],
-      "js": ["src/disney/starplus/script.js"]
-		}
-	]
+      "matches": [
+        "https://*.hbomax.com/*"
+      ],
+      "js": [
+        "src/hbo/hbomax/script.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://*.starplus.com/*"
+      ],
+      "js": [
+        "src/disney/starplus/script.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://*.netflix.com/*"
+      ],
+      "js": [
+        "src/netflix/script.js"
+      ]
+    }
+  ]
 }

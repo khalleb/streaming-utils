@@ -1,39 +1,36 @@
-
-var UtilStarPlus = (function () {
-
-  var target = {
+var UtilStarPlus = () => {
+  const config = {
     childList: true,
-    attributes: false,
+    attributes: true,
     subtree: true,
-  }
+  };
 
-  var intro_observer = new MutationObserver(skipIntro)
-
-  function run() {
-    try {
-      const elementSelectorIntro = document.querySelector('.skip__button') || document;
-      intro_observer.observe(elementSelectorIntro, target);
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  function skipIntro(mutations, observer) {
-    const skip = document.querySelector(".skip__button");
-    if (skip) {
-      skip.click();
+  function callback(mutations, observer) {
+    const targetNode = document.querySelector('.skip__button');
+    if (targetNode) {
+      targetNode.click();
       const fullscreen = document.querySelector('.fullscreen-icon');
       if (fullscreen) {
         fullscreen.click();
       }
     }
   }
+
+  function run() {
+    try {
+      var mutationObserver = new MutationObserver(callback)
+      mutationObserver.observe(document, config);
+    } catch (erro) {
+      console.log(erro)
+    }
+  }
+
   return {
     run: run
   };
-})();
+};
 
-UtilStarPlus.run();
+UtilStarPlus().run();
 
 
 // const NETFLIX = 'Netflix';
