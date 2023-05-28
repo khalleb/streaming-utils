@@ -1,28 +1,31 @@
-document.addEventListener('keydown', (event) => {
-  let video = document.getElementsByTagName('video');
-  if (!video || video.length <= 0) return;
+var UtilHboMax = () => {
+  const config = {
+    childList: true,
+    attributes: true,
+    subtree: true,
+  };
 
-  video = video[0];
+  function callback(mutations, observer) {
+    const targetNode = Array.from(document.body.querySelectorAll("[role=\"button\"]"));
+    if (targetNode !== null && targetNode !== undefined && targetNode.length > 0) {
+      const button = targetNode.find(e => ["SkipButton", "UpNextButton"].includes(e.dataset["testid"]));
+      if (button)
+        button.click();
+    }
+  }
 
-  if (video === undefined) return;
+  function run() {
+    try {
+      var mutationObserver = new MutationObserver(callback)
+      mutationObserver.observe(document, config);
+    } catch (erro) {
+      console.log(erro)
+    }
+  }
 
-  let keyName = event.key;
-  let timeOffset = 15;
+  return {
+    run: run
+  };
+};
 
-  if (keyName == 'ArrowLeft') {
-    console.log(`VOLUME LEFT: ${timeOffset} SECONDS`);
-    video.currentTime -= timeOffset;
-  }
-  else if (keyName == 'ArrowRight') {
-    `VOLUME RIGHT: ${timeOffset} SECONDS`
-    video.currentTime += timeOffset;
-  }
-  else if (keyName == 'ArrowUp') {
-    console.log('VOLUME UP');
-    video.volume = Math.min(video.volume + 0.1, 1.0)
-  }
-  else if (keyName == 'ArrowDown') {
-    console.log('VOLUME DOWN');
-    video.volume = Math.max(video.volume - 0.1, 0)
-  }
-});
+UtilHboMax().run();
