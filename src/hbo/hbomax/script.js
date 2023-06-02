@@ -8,7 +8,7 @@ var UtilHboMax = () => {
   function callback(mutations, observer) {
     const targetNode = Array.from(document.body.querySelectorAll("[role=\"button\"]"));
     if (targetNode !== null && targetNode !== undefined && targetNode.length > 0) {
-      const button = targetNode.find(e => ["SkipButton", "UpNextButton"].includes(e.dataset["testid"]));
+      const button = targetNode.find(e => e?.dataset["testid"] === 'SkipButton');
       if (button)
         button.click();
     }
