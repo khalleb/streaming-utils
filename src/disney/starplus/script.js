@@ -6,22 +6,25 @@ var UtilStarPlus = () => {
   };
 
   function callback(mutations, observer) {
-    const targetNode = document.querySelector('.skip__button');
-    if (targetNode) {
-      targetNode.click();
-      const fullscreen = document.querySelector('.fullscreen-icon');
-      if (fullscreen) {
-        fullscreen.click();
+    const skipButton = document.querySelector('.skip__button');
+
+    if (skipButton) {
+      skipButton.click();
+
+      const fullscreenIcon = document.querySelector('.fullscreen-icon');
+      if (fullscreenIcon) {
+        fullscreenIcon.click();
       }
     }
   }
 
   function run() {
     try {
-      var mutationObserver = new MutationObserver(callback)
+      var mutationObserver = new MutationObserver(callback);
+
       mutationObserver.observe(document, config);
-    } catch (erro) {
-      console.log(erro)
+    } catch (error) {
+      console.log('Erro ao executar o MutationObserver:', error);
     }
   }
 
